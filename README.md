@@ -1,7 +1,7 @@
 # FASE
 
-Finding Alternative Splicing Events (FASE) 
+Analysis of RNA-Sequencing data using FASE (Finding Alternative Splicing Events).
 
-FASE can find differential alternatively spliced exons and introns from RNA-Sequencing data. Further, it can use the expression of these events and their associated meta-features to find survival rate of samples/patients.
+The pipeline is based on differential alternative splicing events and predicts the transcript structure and their concentration along with survival analysis. This is the first kind of pipeline that takes advantage of differential alternative splicing events for finding novel transcripts that are neglected due to low expression in transcript level statistical analysis. The pipeline generates reproducible results.
 
-FASE also provides wrapper functions to find differentially expressed genes and differentially expressed junctions in the samples.
+It has seven modules for downstream analysis of RNA-Sequencing data. These include: differntial alternative splicing, transcript structure, transcript concentration, survival analysis, network analysis, differential gene expression, and differential junction expression.
