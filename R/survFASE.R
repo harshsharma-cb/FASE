@@ -32,6 +32,8 @@ survFASE <- function(Time = Time, Status = Status, Gcount, clinical.data, rmm = 
 	#checking if mm is empty (some iMM are empty)
 	if(is.null(mm)) base::stop("rmm/imm is empty.")
 
+  threshold.mf <- threshold
+
 	#making a matrix of metafetaures associated with given eventID
     metafeatures <- as.matrix(mm[ , eventID])
     metafeatures <- subset(metafeatures, metafeatures[,1]>0.0)
@@ -49,7 +51,7 @@ survFASE <- function(Time = Time, Status = Status, Gcount, clinical.data, rmm = 
   	counts <- colSums(Gcount.temp) #checking number of samples with non-zero expression in each mf
   	index <- which(counts > threshold) # checking mfs with more than threshold non-zero samples
   	Gcount <- Gcount[ , index] #retaining mfs with more than threshold non-zero expression
-  	if(ncol(Gcount) == 0) stop('More than 60% samples have zero expression in all meta-features.')
+  	if(ncol(Gcount) == 0) warning('More than ' , threshold.mf*100, '% samples have zero expression in all meta-features.')
 
   	## adding clinicaldata to expression
  	index <- match(rownames(clinical.data), rownames(Gcount))
