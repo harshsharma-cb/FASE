@@ -74,8 +74,8 @@
     l.exonlist <- colnames(ts.p)[grep("EX", colnames(ts.p))[1:((match(event, colnames(ts.p))) - 1)]]
     r.exonlist <- colnames(ts.p)[grep("EX", colnames(ts.p))[((match(event, colnames(ts.p))) + 1):ncol(ts.p)]]
     } else{
-      l.exonlist <- colnames(ts.p)[grep("EX", colnames(ts.p))[1:(match(s.exon$ls_exon.connected.exons, colnames(ts.p)))]]
-      r.exonlist <- colnames(ts.p)[grep("EX", colnames(ts.p))[(match(s.exon$rs_exon.connected.exons, colnames(ts.p))):ncol(ts.p)]]
+      if(length(s.exon$ls_exon.connected.exons) > 0) l.exonlist <- colnames(ts.p)[grep("EX", colnames(ts.p))[1:(match(s.exon$ls_exon.connected.exons, colnames(ts.p)))]] else l.exonlist <- NA
+      if(length(s.exon$rs_exon.connected.exons) > 0) r.exonlist <- colnames(ts.p)[grep("EX", colnames(ts.p))[(match(s.exon$rs_exon.connected.exons, colnames(ts.p))):ncol(ts.p)]] else r.exonlist <- NA
     }
 
   #dividing included exons into left and right
