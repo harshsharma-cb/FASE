@@ -55,7 +55,7 @@ connected.exons.igraph <- function(cmm = cmm, event = event, ls_exon = ls_exon, 
             # check each element, if this is found somewhere in any other element
             if(length(lse.struct.n.vec) > 1000){
               lse.struct.n <- NULL
-              paste0(event, " has too many structures, possibly due to 3'/5' Alternative Splicing or gene fusion.")
+              #paste0(event, " has too many structures, possibly due to 3'/5' Alternative Splicing or gene fusion.")
               return()
               } else{
                 lse.struct.n <- lse.struct.n[sapply(seq_along(lse.struct.n.vec), function(m) !any(grepl(lse.struct.n.vec[m], lse.struct.n.vec[-m], fixed = TRUE)))] ##limiting step
@@ -88,7 +88,7 @@ connected.exons.igraph <- function(cmm = cmm, event = event, ls_exon = ls_exon, 
             # check each element, if this is found somewhere in any other element
             if(length(rse.struct.n.vec) > 1000){
               rse.struct.n <- NULL
-              paste0(event, " has too many structures, possibly due to 3'/5' Alternative Splicing or gene fusion.")
+              #paste0(event, " has too many structures, possibly due to 3'/5' Alternative Splicing or gene fusion.")
               return()
               } else{
             rse.struct.n <- rse.struct.n[sapply(seq_along(rse.struct.n.vec), function(m) !any(grepl(rse.struct.n.vec[m], rse.struct.n.vec[-m], fixed = TRUE)))] ##limiting step
