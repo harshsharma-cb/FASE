@@ -30,7 +30,7 @@
 #'
 transtruct <- function(ep.event = NULL, ip.event = NULL, Gcount = Gcount, RMM, iMM = NULL, designM, annotation, Groups, keep.intron = FALSE){
   expression <- .removeLECountsTS(Gcount = Gcount, designM = designM, Groups = Groups)
-  cmm <- .cmm(geneID = geneID, expression = expression, RMM = RMM, iMM = iMM)
+  cmm <- .cmm(expression = expression, RMM = RMM, iMM = iMM)
   annotation <- droplevels(annotation[match(rownames(cmm), annotation$EX_IN), ])
   #browser()
   #EP_inclusion
@@ -92,6 +92,12 @@ transtruct <- function(ep.event = NULL, ip.event = NULL, Gcount = Gcount, RMM, i
   index <- match(colnames(ts.incl), rownames(expression)) # to match order of metafeatures in expression matrix with that of transcript structure
   expression <- expression[index, ]
   
+  # #checking if total TS (incl+excl) are < 10,000
+  # if(nrow(ts.incl) + nrow(ts.excl) > 10000){
+  #   cat("Too many transcript structures, possibly due to 3'/5' Alternative Splicing or gene fusion.")
+  #   ts.incl <- NULL; ts.excl <- NULL
+  # }
+
   #transtructs <- list('transtruct.condition' = transtruct.condition, 'transtruct.normal' = transtruct.normal, 'expression' = expression)
   transtructs <- list('transtruct.inclusion' = ts.incl, 'transtruct.exclusion' = ts.excl, 'expression' = expression)
   return(transtructs)
