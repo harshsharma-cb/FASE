@@ -42,7 +42,7 @@
 #'
 #' @export
 
-EPrnaseq <- function(Gcount, RMM, designM, contrastM, Groups=NULL, p=1,threshold=3, annotation=annotation, ... ) {
+EPrnaseq <- function(Gcount, RMM, designM, contrastM, Groups=NULL, p=1,threshold=3, annotation, ... ) {
 
   #
   #Check length of Gcount and length of RMM
