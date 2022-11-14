@@ -9,7 +9,7 @@
 #' @export
 #'
 
-addAnnotationRnaSeq <- function(fit, annotation=annotation) {
+addAnnotationRnaSeq <- function(fit, annotation) {
   if (attr(fit, "name") != "EPrnaSeq" & attr(fit, "name") != "iPrnaSeq") stop('Not an object of EPrnaSeq or iPrnaSeq')
   atNames<- attr(fit, "name")
   #load('Annotation.Rdata')
