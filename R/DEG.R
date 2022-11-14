@@ -20,7 +20,7 @@
 #' }
 #' @export
 #'
-DEG<- function(geneCount, designM=designM, contrastM=contrastM, Groups=Groups)
+DEG<- function(geneCount, designM, contrastM, Groups)
 {
 
         #load('counts_genes.Rdata')
@@ -88,7 +88,7 @@ addAnnotationDEG <- function(geneCount,fit,contrast)
 #' @export
 #'
 
-cpmCountsDEG<- function(geneCount, filename, designM = designM, contrastM = contrastM, Groups = Groups)
+cpmCountsDEG<- function(geneCount, filename, designM, contrastM, Groups)
 {
 
         #load('DCmatrix.Rdata')
