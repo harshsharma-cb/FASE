@@ -109,7 +109,7 @@ if (is.null(rownames(iMMeber)) || nrow(iMMeber)< 3 ) { cat('Skipping short Gene 
 index <- match(rownames(counts), rownames(iMMeber))
 iMMeber<- iMMeber[index,,drop=FALSE]
 
-try(fit <- .iPrnaseqFunction(counts,iMM= iMMeber,contrastM=contrastM,designM=designM,Groups=Groups),silent=TRUE)
+try(fit <- .iPrnaseqFunction(counts=counts,iMM= iMMeber,contrastM=contrastM,designM=designM,Groups=Groups),silent=TRUE)
        if(!exists("fit",inherits=FALSE))  return(NA) ##This is not working may be some problem of space
        if( class(fit)=='try-error') {
         cat('Skipping Gene:',gene,'\n',sep='');
@@ -136,7 +136,7 @@ return(fit)
 #' @return
 #'
 
-.iPrnaseqFunction <- function(counts=y,iMM= iMMeber,contrastM=contrastM,designM=designM,Groups=Groups){
+.iPrnaseqFunction <- function(counts=y,iMM,contrastM,designM,Groups){
 #require(limma)
 #require(edgeR) #edgeR is also dependent on Limma
 ## Later i should make some arrangement to use quantile and TMM normalizaition seperatly
