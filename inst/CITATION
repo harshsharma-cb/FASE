@@ -1,0 +1,19 @@
+citHeader("Please cite the paper below for the FASE software.")
+
+citEntry(entry="article",
+	author = c(person("Harsh","Sharma"),
+	           person("Trishna","Pani"),
+	           person("Ujjaini","Dasgupta"),
+	           person("Jyotsna","Batra"),
+	           person(c("Ravi","Datta"),"Sharma")),
+	title = "Prediction of transcript structure and concentration using RNA-Seq data",
+	journal = "Briefings in Bioinformatics",
+	year = 2023,
+	volume = ,
+	number = ,
+	pages = "",
+	doi = "10.1093/bib/bbad022",
+
+	textVersion = 
+	"Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D. (2023). Prediction of transcript structure and concentration using RNA-Seq data. Briefings in Bioinformatics. DOI: "
+)
