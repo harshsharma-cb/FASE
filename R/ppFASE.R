@@ -30,15 +30,14 @@ ppFASE <- function(folderSRA=FALSE, gtf, exonCount, intronCount, JunctionMatrix)
 
   start.time <- Sys.time()
 
-
   ##Generating readMembershipMatrix
-  # source('/home/harsh/Scripts_All/readMembershipMatrix.R')
+
 
   cat(paste('\n', "Task 1 out of 3:",'\n' ,"Creating Read Membership Matrix...", '\n' ))
 
   tstamp <- Sys.time()
   cat(paste("[", tstamp, "]", " Getting readMembershipMatrix... ", '\n', sep="", collapse=""))
-  RMM <- readMembershipMatrix(gtf, JunctionMatrix)
+  RMM <- readMembershipMatrix(gtf=gtf, JunctionMatrix=JunctionMatrix)
   tstamp <- Sys.time()
   cat(paste("[", tstamp, "]", " Getting readMembershipMatrix...done ", '\n', sep="", collapse=""))
   save(RMM, file='RMM.Rdata');
@@ -49,7 +48,7 @@ ppFASE <- function(folderSRA=FALSE, gtf, exonCount, intronCount, JunctionMatrix)
 
 
   #intronMembershipMatrix
-  # source('/home/harsh/Scripts_All/intronMembershipMatrix.R')
+ 
 
   cat(paste('\n', "Task 2 out of 3:",'\n' ,"Creating Intron Membership Matrix...", '\n' ))
   load('Annotation.Rdata')
@@ -65,9 +64,7 @@ ppFASE <- function(folderSRA=FALSE, gtf, exonCount, intronCount, JunctionMatrix)
   cat(paste("[", tstamp, "]", " Saving intronMembershipMatrix...done ", '\n', sep="", collapse=""))
 
   ##Generating genecountMatrix
-  # source('/home/harsh/Scripts_All/countMatrixGenes.R')
-  # source('/home/harsh/Scripts_All/countMatrixGenes.R')
-
+ 
   cat(paste('\n', "Task 3 out of 3:",'\n' ,"Creating gene count matrix...", '\n' ))
 
   tstamp <- Sys.time()
@@ -76,7 +73,7 @@ ppFASE <- function(folderSRA=FALSE, gtf, exonCount, intronCount, JunctionMatrix)
   #load('counts_introns.Rdata')
   #load("Annotation.Rdata")
   #load("JunctionCounts.Rdata")
-  Gcount <- countMatrixGenes(JunctionMatrix, annotation=annotation, intronList=intronCount, exonList= exonCount)
+  Gcount <- countMatrixGenes(JunctionMatrix=JunctionMatrix, annotation=annotation, intronList=intronCount, exonList= exonCount)
   tstamp <- Sys.time()
   cat(paste("[", tstamp, "]", " Generating per Gene count...done ", '\n', sep="", collapse=""))
   save(Gcount, file='Gcount.Rdata')
