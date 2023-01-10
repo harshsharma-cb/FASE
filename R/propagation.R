@@ -13,7 +13,7 @@
 #'
 #' @return
 
-.propagation <- function(cmm = cmm, ts.p = ts.p, cjmm = cjmm, se = se, s_exon = s_exon, event = event, eventtype, connected.exon = connected.exon, s.exon = NULL, keep.intron = FALSE){
+.propagation <- function(cmm, ts.p, cjmm, se, s_exon, event, eventtype, connected.exon, s.exon = NULL, keep.intron = FALSE){
   #finding how many TS can be formed with one seed exon pair. It is possible for an event to not have both right and left flanking (seed) exon, so putting these conditions:
 #browser()
   #adding seed junctions
