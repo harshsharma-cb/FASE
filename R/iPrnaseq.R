@@ -44,7 +44,7 @@
 #' @export
 #'
 
-iPrnaseq <- function(Gcount, iMM, designM, contrastM, Groups=NULL, p=1,threshold=3, annotation=annotation, ... ) {
+iPrnaseq <- function(Gcount, iMM, designM, contrastM, Groups=NULL, p=1,threshold=3, annotation, ... ) {
 index<- match(names(Gcount),names(iMM))
 iMM<- iMM[index]
 
