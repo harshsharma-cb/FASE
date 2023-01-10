@@ -1,4 +1,4 @@
-#' FASE: Finding Alternative Splicing Events (0.1.23)
+#' FASE: Finding Alternative Splicing Events (0.1.24)
 #'
 #' RNA-Seq data analysis pipeline.
 #'
@@ -8,5 +8,5 @@
 #'
 #' @docType package
 #'
-#' @author Harsh Sharma and Dr. Ravi Datta Sharma
+#' @author Harsh Sharma and Ravi Datta Sharma
 NULL
