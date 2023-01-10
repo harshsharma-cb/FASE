@@ -22,10 +22,10 @@
 #' @export
 #'
 
-DEJ<- function(JunctionMatrix, designM=designM, contrastM=contrastM, Groups=Groups)
+DEJ<- function(JunctionMatrix, designM, contrastM, Groups)
 {
         rownames(JunctionMatrix) <- JunctionMatrix[,5]
-        counts<- JunctionMatrix[,6:ncol(JunctionMatrix)] #saving raw counts for all genes
+        counts<- JunctionMatrix[,6:ncol(JunctionMatrix)] #saving raw counts for all junctions
         write.csv(counts,file='RawJunctionCounts.csv')
         #load('DCmatrix.Rdata')
         ncounts <- DGEList(counts=counts, group=Groups)
@@ -61,7 +61,7 @@ addAnnotationDEJ<-function(JunctionMatrixA,fit,contrast)
         test<- topTable(fit, coef=contrast, n = Inf, sort = "p")
         #load('counts_genes.Rdata')
         annotation <- JunctionMatrixA[,c(1:5,ncol(JunctionMatrixA))]
-        index<- match(as.vector(test[,1]),as.vector(rownames(annotation)))
+        index<- match(as.vector(rownames(test)),as.vector(annotation$UniqueJun))
         test<- cbind(test,annotation[index,,drop=FALSE])
         return(test)
 }
@@ -116,53 +116,3 @@ cpmCountsDEJ<- function(JunctionMatrix,filename, designM=designM, contrastM=cont
 
 
 }
-
-# #' cpmCountsDEJ
-# #'
-# #' @description Save read counts and log2cpm expression of differentially expressed junctions.
-# #'
-# #' @param JunctionMatrix matrix containing read counts for junctions.
-# #' @param designM design matrix required by limma
-# #' @param contrastM contrast matrix required by limma.
-# #' @param Groups list of sample groups. \cr
-# #'        Example: If there are two sample groups with three samples each, 'Groups' should be formed as:
-# #'        \enumerate{
-# #'        \item numeric: c(1, 1, 1, 2, 2, 2)
-# #'        }
-# #' @param fit output of \code{\link{addAnnotationDEJ}}, which contains annotated ranking of differentially expressed junctions of a given contrast
-# #' 
-# #' @import edgeR
-# #'
-# #' @return Read counts and logcpm expression of given contrast.
-# #'
-# #' @references \enumerate{
-# #' \item Robinson, M. D., McCarthy, D. J. & Smyth, G. K. edgeR: A Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics 26, 139–140 (2009)
-# #' }
-# #' @export
-# #'
-
-# cpmCountsDEJ<- function(JunctionMatrix,fit, designM=designM, contrastM=contrastM, Groups=Groups)
-# {
-#         #load('DCmatrix.Rdata')
-#         #test <- read.csv(filename)
-#         #filename<- strsplit(filename,'.',fixed=TRUE)[[1]][1]
-        
-#         eventName<- as.vector(fit$X)
-        
-#         counts<- JunctionMatrix[,6:ncol(JunctionMatrix)] #saving raw counts for all genes
-        
-#         index <- match(eventName,rownames(counts))
-#         counts <- counts[index,,drop=FALSE]
-        
-#         #countfilename <- paste(filename,'_count.csv',sep="",collapse="")
-#         #write.csv(counts,file=countfilename)
-        
-#         ncounts <- DGEList(counts=counts, group=Groups)
-#         ncounts <- calcNormFactors(ncounts)
-#         fit<- voom(ncounts,designM)
-#         E <- ((counts !=0)*1)* fit$E
-#         #l_filename <- paste(filename,'_log2cpm.csv',sep="",collapse="")
-#         #write.csv(E,file=l_filename)
-#         return(list('counts' = counts, 'log2cpm' = E))
-        
-# }
