@@ -18,7 +18,7 @@
 #' @param pairedend boolean, TRUE if reads are paired-end and FALSE if reads are single-end. All files should be either single-end or paired-end. (default=FALSE)
 #' @param genomeBI path of genome build of the organism created using bowtie2-build command.
 #' @param gtf intron parsed gtf file of the organism. Please check \code{\link{intronGTFparser}} to generate intron parsed gtf file (to generate intron read counts).
-#' @param files type of raw read file: fastq or sra (downloaded from NCBI). All files should be in same format and have same read length. (default=fastq)
+#' @param files type of raw read file: fastq or sra (downloaded from NCBI). All files should be in same format and have same read length. Please convert files with extension .fq to .fastq and unzip/untar compressed files. (default=fastq)
 #' @param p number of threads to be utilized by samtools and Rsubread package. (default=1)
 #' @param N accepted read mismatches. Reads with more than N mismatches are discarded. (default=6) [tophat2 parameter]
 #' @param r expected inner distance between mate pair. (default=44) [tophat2 parameter]
@@ -104,7 +104,7 @@ ppRawData <- function(folderSRA=FALSE, srlist = NULL, pairedend = FALSE, genomeB
     tstamp <- Sys.time()
     cat(paste("[", tstamp,"]", " Converting sra files to fastq...done ", '\n', sep="", collapse=""))
     # srlist<- unlist(strsplit(srlist,'.sra',fixed=TRUE))
-    srlist <- unlist(strsplit(srlist, '.sra', fixed=TRUE))
+    #srlist <- unlist(strsplit(srlist, '.sra', fixed=TRUE))
     save(srlist, file='srlist.Rdata')
   } else if (files == 'fastq' && pairedend == TRUE) {
     srlist <- dir(pattern = '.fastq')
@@ -120,7 +120,7 @@ ppRawData <- function(folderSRA=FALSE, srlist = NULL, pairedend = FALSE, genomeB
   } else if (files == 'fastq'&& pairedend == FALSE) {
     srlist <- dir(pattern = '.fastq')
     if(length(srlist) == 0) stop('No fastq file found in the folder')
-    srlist <- unlist(strsplit(srlist, '.fastq', fixed=TRUE))
+    srlist <- unlist(strsplit(srlist, '.fastq', fixed=FALSE))
     save(srlist, file='srlist.Rdata')
   }  
   }
