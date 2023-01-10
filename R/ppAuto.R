@@ -17,7 +17,7 @@
 #' @param pairedend boolean, TRUE if reads are paired-end and FALSE if reads are single-end. All files should be either single-end or paired-end. (default=FALSE)
 #' @param genomeBI path of genome build of the organism created using bowtie2-build command.
 #' @param gtf intron parsed gtf file of the organism. Please check \code{\link{intronGTFparser}} to generate intron parsed gtf file (to generate intron read counts).
-#' @param files type of raw read file: fastq or sra (downloaded from NCBI). All files should be in same format and have same read length. (default=fastq)
+#' @param files type of raw read file: fastq or sra (downloaded from NCBI). All files should be in same format and have same read length. Please convert files with extension .fq to .fastq and unzip/untar compressed files.  (default=fastq)
 #' @param p number of threads to be utilized by samtools and Rsubread package. (default=1)
 #' @param N accepted read mismatches. Reads with more than N mismatches are discarded. (default=6) [tophat2 parameter]
 #' @param r expected inner distance between mate pair. (default=44) [tophat2 parameter]
@@ -75,7 +75,6 @@ ppAuto <- function(folderSRA = FALSE, srlist = NULL, pairedend = FALSE, genomeBI
 
   if(is.null(srlist)){
     if (files == 'sra' && pairedend == TRUE) {
-    #srlist <- dir(pattern = '.sra')
     srlist <- dir()
     if(length(srlist) == 0) stop('No SRA file found in SRA folder')
 
@@ -92,11 +91,10 @@ ppAuto <- function(folderSRA = FALSE, srlist = NULL, pairedend = FALSE, genomeBI
     save(srlist, file='srlist.Rdata')
 
   } else if (files == 'sra' && pairedend == FALSE) {
-    #srlist <- dir(pattern = '.sra')
     srlist <- dir()
     if(length(srlist) == 0) stop('No SRA file found in SRA folder')
 
-    ##Separate paired-end files using fastq-dump # I need to use the parellel for this
+    ##Separate single-end files using fastq-dump
     tstamp <- Sys.time()
     cat(paste("[", tstamp,"]", " Converting sra files to fastq... ", '\n', sep="", collapse=""))
     new<- lapply(srlist, function(x) {
@@ -105,34 +103,31 @@ ppAuto <- function(folderSRA = FALSE, srlist = NULL, pairedend = FALSE, genomeBI
     cat('\n')
     tstamp <- Sys.time()
     cat(paste("[", tstamp,"]", " Converting sra files to fastq...done ", '\n', sep="", collapse=""))
-    # srlist<- unlist(strsplit(srlist,'.sra',fixed=TRUE))
-    #srlist <- unlist(strsplit(srlist, '.sra', fixed=TRUE))
     save(srlist, file='srlist.Rdata')
   } else if (files == 'fastq' && pairedend == TRUE) {
-    srlist <- dir(pattern = '.fastq')
+    srlist <- dir(pattern = '.fastq|.fq|.fq.gz')
     if(length(srlist) == 0) stop('No fastq file found in the folder')
-    srlist <- unlist(strsplit(srlist, '.fastq', fixed=TRUE))
+    srlist <- unlist(strsplit(srlist, '.fastq,|fq,|fq.gz', fixed=FALSE))
 
-    #i have to make something that should take into pairedend into account otherwise there are lots file now
-    ##might not work for all purpose
     nsrlist <- strsplit(srlist, '_', TRUE)
     nsrlist <- do.call('rbind', nsrlist)
     srlist <- unique(nsrlist[,1])
-    save(srlist, file='srlist.Rdata')  #only for test purpose, I should delete this later.
+    save(srlist, file='srlist.Rdata')  
   } else if (files == 'fastq'&& pairedend == FALSE) {
-    srlist <- dir(pattern = '.fastq')
+    srlist <- dir(pattern = '.fastq|.fq|.fq.gz')
     if(length(srlist) == 0) stop('No fastq file found in the folder')
-    srlist <- unlist(strsplit(srlist, '.fastq', fixed=TRUE))
+    srlist <- unlist(strsplit(srlist, '.fastq,|fq,|fq.gz', fixed=FALSE))
     save(srlist, file='srlist.Rdata')
   }
   }
   
-
+  
+  
   ##Running tophat
 
   #segment_length
   if(is.null(segment_length)){
-    fsl <- dir(pattern = '*.fastq')
+    fsl <- dir(pattern = '.fastq|.fq|.fz')
     fsl <- fsl[1]
     system(paste('a=`head -2 ', fsl, ' | tail -1 | wc -L` ; echo $a > .rl.csv' ))
     segment_length <- as.integer(as.vector(read.csv(file='.rl.csv', header = F))/2-5)
@@ -343,7 +338,7 @@ ppAuto <- function(folderSRA = FALSE, srlist = NULL, pairedend = FALSE, genomeBI
   load('counts_exons.Rdata')
   load('counts_introns.Rdata')
   load("Annotation.Rdata")
-  Gcount <- countMatrixGenes(JunctionMatrix, annotation=annotation, intronList=intronCount, exonList= exonCount)
+  Gcount <- countMatrixGenes(JunctionMatrix=JunctionMatrix, annotation=annotation, intronList=intronCount, exonList= exonCount)
   tstamp <- Sys.time()
   cat(paste("[", tstamp, "]", " Generating per Gene count...done ", '\n', sep="", collapse=""))
   save(Gcount, file='Gcount.Rdata')
@@ -387,5 +382,3 @@ GTFnomencJunctionM<- function(gtf,JunctionMatrix){
   JunctionMatrix[,1]<- as.factor(finalchange)
   save(JunctionMatrix,file="JunctionMatrix.Rdata")
 }
-
-
