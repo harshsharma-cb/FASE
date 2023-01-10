@@ -30,7 +30,7 @@ DEG<- function(geneCount, designM, contrastM, Groups)
 
         #removing genes with low read counts less than 3
         counts <- prepareCounts(counts, designM, Groups, threshold=2)
-        ncounts <- DGEList(counts=counts, group=Groups)
+        ncounts <- DGEList(counts, Groups)
         ncounts <- calcNormFactors(ncounts)
         fit<- voom(ncounts,designM)
 
@@ -60,7 +60,10 @@ addAnnotationDEG <- function(geneCount,fit,contrast)
         test<- topTable(fit, coef=contrast, n = Inf, sort = "p")
         #load('counts_genes.Rdata')
         annotation <- geneCount$annotation
-        index<- match(as.vector(test[,1]),as.vector(annotation[,1]))
+        if(ncol(test) > 6) # When fit$coefficients has duplicate geneIDs
+                index<- match(as.vector(test[,1]),as.vector(annotation[,1]))
+        else
+                index<- match(as.vector(rownames(test)),as.vector(annotation[,1]))
         test<- cbind(test,annotation[index,,drop=FALSE])
         return(test)
 }
@@ -68,7 +71,7 @@ addAnnotationDEG <- function(geneCount,fit,contrast)
 
 #' cpmCountsDEG
 #'
-#' @description Generates read counts and log2cpm expression for differentially expressed genes for a given contrast, using output of \code{\link{addAnnotationDEG}} function.
+#' @description Generates read counts and log2CPM expression for differentially expressed genes for a given contrast, using output of \code{\link{addAnnotationDEG}} function.
 #'
 #' @param geneCount summarized read counts of genes.
 #' @param filename filename in which output of addAnnotationDEG is saved.
@@ -113,51 +116,3 @@ cpmCountsDEG<- function(geneCount, filename, designM, contrastM, Groups)
         l_filename <- paste(filename,'_log2cpm.csv',sep="",collapse="")
         write.csv(E,file=l_filename)
 }
-
-# #' cpmCountsDEG
-# #'
-# #' @description Generates read counts and log2cpm expression for differentially expressed genes for a given contrast, using output of \code{\link{addAnnotationDEG}} function.
-# #'
-# #' @param geneCount summarized read counts of genes.
-# #' @param designM design matrix required by limma
-# #' @param contrastM contrast matrix required by limma.
-# #' @param Groups list of sample groups. \cr
-# #'        Example: If there are two sample groups with three samples each, 'Groups' should be formed as:
-# #'        \enumerate{
-# #'        \item numeric: c(1, 1, 1, 2, 2, 2)
-# #'        }
-# #' @param fit output of \code{\link{addAnnotationDEG}}, which contains annotated ranking of differentially expressed genes of given contrast
-# #'
-# #' @return Read counts and log2cpm expression of given contrast for ranked differentially expressed genes.
-# #'
-# #' @references \enumerate{
-# #' \item Robinson, M. D., McCarthy, D. J. & Smyth, G. K. edgeR: A Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics 26, 139–140 (2009)
-# #' }
-# #' @export
-# #'
-# cpmCountsDEG<- function(geneCount, fit, designM = designM, contrastM = contrastM, Groups = Groups)
-# {
-        
-#         #load('DCmatrix.Rdata')
-#         #test <- read.csv(filename)
-#         #filename<- strsplit(filename,'.',fixed=TRUE)[[1]][1]
-        
-#         eventName<- as.vector(fit$X)
-        
-#         # load('counts_genes.Rdata')
-#         counts<- geneCount$counts #saving raw counts for all genes
-#         # load('DCmatrix.Rdata')
-#         index <- match(eventName,rownames(counts))
-#         counts <- counts[index,,drop=FALSE]
-        
-#         #countfilename <- paste(filename,'_count.csv',sep="",collapse="")
-#         #write.csv(counts,file=countfilename)
-        
-#         ncounts <- DGEList(counts=counts, group=Groups)
-#         ncounts <- calcNormFactors(ncounts)
-#         fit<- voom(ncounts,designM)
-#         E <- ((counts !=0)*1)* fit$E
-#         #l_filename <- paste(filename,'_log2cpm.csv',sep="",collapse="")
-#         #write.csv(E,file=l_filename)
-#         return(list('counts' = counts, 'log2cpm' = E))
-# }
