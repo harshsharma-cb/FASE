@@ -86,7 +86,7 @@
 #'
 #' @return
 
-.s.exon.ip.incl <- function(ip_event = ip_event, cmm = cmm, annotation = annotation){
+.s.exon.ip.incl <- function(ip_event, cmm, annotation){
   #annotation <- annotation[which(annotation$genes == geneID),]
   annotation <- annotation[order(annotation$V4), ]
 
@@ -138,7 +138,7 @@
 #'
 #' @return
 
-.seed.exon.ep.excl <- function(ep_event = ep_event, cmm = cmm){
+.seed.exon.ep.excl <- function(ep_event, cmm){
   # list of exons
   exon.list <- colnames(cmm)[grep("EX", colnames(cmm))]
 
@@ -199,7 +199,7 @@
 #' @param annotation 
 #'
 #' @return
-.seed.exon.ip.excl <- function(ip_event = ip_event, cmm = cmm, annotation = annotation){
+.seed.exon.ip.excl <- function(ip_event, cmm, annotation){
   exon.list <- colnames(cmm)[grep("EX", colnames(cmm))]
 
   # finding seed skipping junction(s) to ip event
