@@ -29,25 +29,6 @@ ppFASE <- function(folderSRA=FALSE, gtf, exonCount, intronCount, JunctionMatrix)
   } else {folderSRA=folderSRA}
 
   start.time <- Sys.time()
-#  load('srlist.Rdata')
-#
-#
-#   ##Counting Junction reads
-#   #source('/home/harsh/Scripts_All/getJunctionCountMatrix.R')
-#
-#   cat(paste("Task 1 out of 4:",'\n' ,"Preparing junction matrix...", '\n' ))
-#
-#   tstamp <- Sys.time()
-#   cat(paste("[", tstamp, "]", " Counting Junction reads... ", '\n', sep="", collapse=""))
-#   jfiles <- unlist(lapply(srlist, function(x) paste(folderSRA, '/' ,x ,'_tophat_out/junctions.bed' ,sep='', collapse="")))
-#   JunctionMatrix <- getJunctionCountMatrix(jfiles)
-#   tstamp <- Sys.time()
-#   cat(paste("[", tstamp, "]", " Counting Juntion reads...done ", '\n', sep="", collapse=""))
-#   ##Change name of sample here and will be same through out##
-#   colnames(JunctionMatrix) <- c(colnames(JunctionMatrix)[1:5],srlist)
-#   save(JunctionMatrix, file='JunctionCounts.Rdata')
-#   tstamp <- Sys.time()
-#   cat(paste("[", tstamp, "]", " Saving Junction reads count...done ", '\n', sep="", collapse=""))
 
 
   ##Generating readMembershipMatrix
