@@ -3,10 +3,10 @@
 \docType{package}
 \name{FASE}
 \alias{FASE}
-\title{FASE: Finding Alternative Splicing Events (0.1.23)}
+\title{FASE: Finding Alternative Splicing Events (0.1.24)}
 \description{
 RNA-Seq data analysis pipeline.
 }
 \author{
-Harsh Sharma and Dr. Ravi Datta Sharma
+Harsh Sharma and Ravi Datta Sharma
 }
