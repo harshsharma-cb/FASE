@@ -18,11 +18,11 @@
 #' @import edgeR
 #' @import matrixStats
 #'
-#' @return survFASE returns an overall p-value, concordance index and Cox-PH statistics. The overall p-value suggests whether or not the given exon/intron significantly affects patient survival. C-index signifies goodness-of-fit of the model. Cox-PH results show which of the metafeatures associated with the exon/intron affect survival rate and their statistical inferences like hazard-ratio, beta-coefficient, etc.
+#' @return survFASE returns an overall p-value, concordance index and Cox-PH statistics. The overall p-value indicates whether or not the given exon/intron significantly affects patient survival. C-index signifies goodness-of-fit of the model. Cox-PH results show which of the metafeatures associated with the exon/intron affect survival rate and their statistical inferences like hazard-ratio, beta-coefficient, etc.
 #'
 #' @export
 
-survFASE <- function(Time, Status, Gcount, clinical.data, rmm = NULL, imm = NULL, eventID, threshold = 0.60, designM, Groups){
+survFASE <- function(Time = Time, Status = Status, Gcount, clinical.data, rmm = NULL, imm = NULL, eventID, threshold = 0.60, designM, Groups){
 	#checking if rmm or imm is provided
 	if(!is.null(rmm) & !is.null(imm)) stop('Please provide RMM if cassette exon event or iMM if intron retention event.')
 
