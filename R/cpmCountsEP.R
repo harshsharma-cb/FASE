@@ -17,7 +17,7 @@
 #'  }
 #' @export
 #'
-cpmCountsEP<- function(filename, designM=designM, Groups, Gcount=Gcount)
+cpmCountsEP<- function(filename, designM, Groups, Gcount)
 {
         #Function to write two more file for ouput file of Exon or intronPointer
         #one for counts data another for log2cpm data
