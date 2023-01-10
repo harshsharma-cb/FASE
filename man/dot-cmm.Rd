@@ -4,16 +4,16 @@
 \alias{.cmm}
 \title{Title}
 \usage{
-.cmm(geneID = geneID, expression = expression, RMM = RMM, iMM = iMM)
+.cmm(expression = expression, RMM = RMM, iMM = iMM)
 }
 \arguments{
-\item{geneID}{}
-
 \item{expression}{}
 
 \item{RMM}{}
 
 \item{iMM}{}
+
+\item{geneID}{}
 }
 \value{
 
