@@ -25,7 +25,7 @@
 #' @export
 #'
 
-readMembershipMatrix <- function(gtf,JunctionMatrix=JunctionMatrix) {
+readMembershipMatrix <- function(gtf,JunctionMatrix) {
   #library(BioPhysConnectoR)
   tstamp <- paste("[",Sys.time(),"]",sep="",collapse="")
   cat(paste(tstamp," Reading GTF...",sep="",collapse=""))
