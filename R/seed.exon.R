@@ -6,7 +6,7 @@
 #'
 #' @return
 
-.seed.exon.ep.incl <- function(cmm = cmm, ep_event = ep_event, keep.intron = keep.intron){
+.seed.exon.ep.incl <- function(cmm, ep_event, keep.intron){
   #making list of all exons
   exon.list <- colnames(cmm)[grep("EX", colnames(cmm))] 
   #checking flanking junctions to ep incl event
