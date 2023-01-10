@@ -28,19 +28,6 @@ transconc <- function(transtruct, designM){
 	G <- transtruct$ts #transcripts*metafeatures
 	##colnames of Y and G should be in exactly same order
 	T <- Y %*% ginv(G) #ginv(G) is samples*transcripts
-	# G1 <- ginv(T) %*% Y
-	# # T1 <- Y %*% ginv(G1)
-	# # G1 <- ginv(T1) %*% Y
-
-	# #iterating G1 and T1 to stabilize concentration values
-	# for(i in 1:10000){ #max iterations
-	# 	T1 <- Y %*% ginv(G1)
-	# 	if(all.equal(G1, (ginv(T1) %*% Y)) == 'TRUE'){
-	# 		print(paste0("Converged in: ", i, " iterations.")); #to check number of iterations for stabilizing G1. Need to remove it later
-	# 		break;
-	# 	} else	G1 <- ginv(T1) %*% Y
-	# }
-	# #ts.rownames <- sprintf('TS%03d', 1:nrow(G1))
 
 	G1 <- G; T1 <- T
 	 ts.rownames <- paste0('TS', 1:nrow(G1))
