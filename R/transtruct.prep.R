@@ -19,7 +19,7 @@
 #' @return
 #' 
 #'
-.transtruct.prep <- function(cmm, event, eventlist, se = s.exon$se, ls_exon = s.exon$ls_exon, rs_exon = s.exon$rs_exon, eventtype, junc.mat = NULL , p = p, transtruct.ep.incl = NULL, transtruct.ep.excl = NULL, transtruct.ip.incl = NULL, transtruct.ip.excl = NULL, s.exon = NULL, keep.intron){
+.transtruct.prep <- function(cmm, event, eventlist, se = s.exon$se, ls_exon = s.exon$ls_exon, rs_exon = s.exon$rs_exon, eventtype, junc.mat = NULL , p, transtruct.ep.incl = NULL, transtruct.ep.excl = NULL, transtruct.ip.incl = NULL, transtruct.ip.excl = NULL, s.exon = NULL, keep.intron){
   #browser()
   index <- grep('JUNC', rownames(cmm))
   if(length(index) == 1){
