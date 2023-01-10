@@ -14,7 +14,7 @@
 #' 
 #' @return
 
-connected.exons.igraph <- function(cmm = cmm, event = event, ls_exon = ls_exon, rs_exon = rs_exon, s.exon = NULL, eventtype = NULL){
+connected.exons.igraph <- function(cmm, event, ls_exon, rs_exon, s.exon = NULL, eventtype = NULL){
   #making all FJs as 1 and the rest 0
   cmm <- (cmm == 2)*1
   #here i'll take both junctions and exons in adj mat
