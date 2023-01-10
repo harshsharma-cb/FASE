@@ -28,11 +28,11 @@
 #' 
 #' @export
 #'
-transtruct <- function(ep.event = NULL, ip.event = NULL, Gcount = Gcount, RMM, iMM = NULL, designM, annotation, Groups, keep.intron = FALSE){
+transtruct <- function(ep.event = NULL, ip.event = NULL, Gcount, RMM, iMM = NULL, designM, annotation, Groups, keep.intron = FALSE){
   expression <- .removeLECountsTS(Gcount = Gcount, designM = designM, Groups = Groups)
   cmm <- .cmm(expression = expression, RMM = RMM, iMM = iMM)
   annotation <- droplevels(annotation[match(rownames(cmm), annotation$EX_IN), ])
-  #browser()
+
   #EP_inclusion
   if(!is.null(ep.event)){
     for(p in 1:length(ep.event)){
