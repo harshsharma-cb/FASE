@@ -22,7 +22,7 @@
 #'
 #' @export
 
-survFASE <- function(Time = Time, Status = Status, Gcount, clinical.data, rmm = NULL, imm = NULL, eventID, threshold = 0.60, designM, Groups){
+survFASE <- function(Time, Status, Gcount, clinical.data, rmm = NULL, imm = NULL, eventID, threshold = 0.60, designM, Groups){
 	#checking if rmm or imm is provided
 	if(!is.null(rmm) & !is.null(imm)) stop('Please provide RMM if cassette exon event or iMM if intron retention event.')
 
