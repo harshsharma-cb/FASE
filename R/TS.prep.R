@@ -11,7 +11,7 @@
 #'
 #' @return
 
-.removeLECountsTS <- function(Gcount = Gcount, designM = designM, Groups = Groups, threshold=6.32, ...){
+.removeLECountsTS <- function(Gcount, designM, Groups, threshold=6.32, ...){
   #removing LE count meta-features
   #require(edgeR)
   #require(matrixStats)
