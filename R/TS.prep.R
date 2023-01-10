@@ -50,7 +50,7 @@
 #'
 #' @return
 
-.cmm <- function(geneID = geneID, expression = expression, RMM=RMM, iMM=iMM){
+.cmm <- function(expression, RMM, iMM){
   #combining RMM and iMM to form combined membership matrix. Also to make RMM and iMM numbers for FJ and SJ constant.
   if(!is.null(RMM) && !is.null(dim(RMM))){
     rmm.index.rows <- match(rownames(expression), rownames(RMM))
