@@ -54,20 +54,13 @@ EPrnaseq <- function(Gcount, RMM, designM, contrastM, Groups=NULL, p=1,threshold
   
   if(p==1) {
 
-    # contrastM <- lapply(1:length(Gcount),function(x) contrastM);
-    # designM <- lapply(1:length(Gcount),function(x) designM);
-    # Groups <-lapply(1:length(Gcount),function(x) Groups);
-    # threshold <-lapply(1:length(Gcount),function(x) threshold);
-
-    #fit <- base::mapply(gene=geneNames,counts=Gcount,RMmeber=RMM,contrastM=contrastM,designM=designM,Groups=Groups,threshold=threshold, FUN=.fitEPrnaseqModel, SIMPLIFY=FALSE);
     fit <- base::lapply(n, function(x) .fitEPrnaseqModel(gene=geneNames[x],counts=Gcount[[x]], RMmeber=RMM[[x]],contrastM=contrastM,designM=designM,Groups=Groups,threshold=threshold))
     
   } else {
-    #require(parallel) #check if you want to have parallel
+    
    
     fit <- mclapply(n, function(x) .fitEPrnaseqModel(gene=geneNames[x],counts=Gcount[[x]], RMmeber=RMM[[x]],contrastM=contrastM,designM=designM,Groups=Groups,threshold=threshold),mc.cores=p);
-    #pkg <- c("package:parallel")
-    #lapply(pkg, detach, character.only = TRUE, unload = TRUE)
+
 
   }
 
@@ -100,14 +93,14 @@ EPrnaseq <- function(Gcount, RMM, designM, contrastM, Groups=NULL, p=1,threshold
   if (is.null(rownames(counts)) || nrow(counts)< 3 ) { cat('Skipping short Gene',gene,'\n',sep=''); return(fit <- NA)  }
 
   #i think i should make aux matrix here and then check the other criteria also make simiar
-  counts<- .prepareCounts(counts, DesignM, Groups, threshold-1)
+  counts<- .prepareCounts(counts, designM, Groups, threshold-1)
   if (is.null(rownames(counts)) || nrow(counts)< 3 ) { cat('Skipping short Gene',gene,'\n',sep=''); return(fit <- NA)  }
   if (is.null(rownames(RMmeber)) || nrow(RMmeber)< 3 ) { cat('Skipping short Gene RMM',gene,'\n',sep=''); return(fit <- NA)  }
 
   #Match dimenstion to count matrix
   index <- match(rownames(counts), rownames(RMmeber))
   RMmeber<- RMmeber[index,,drop=FALSE]
-  try(fit <- .ePrnaseqFunction(counts,RMM= RMmeber,contrastM=contrastM,designM=designM,Groups=Groups),silent=TRUE)
+  try(fit <- .ePrnaseqFunction(counts=counts,RMM= RMmeber,contrastM=contrastM,designM=designM,Groups=Groups),silent=TRUE)
   if(!exists("fit",inherits=FALSE))  return(NA) ##This is not working may be some problem of space
   if( class(fit)=='try-error') {
     cat('Skipping Gene:',gene,'\n',sep='');
@@ -130,7 +123,7 @@ EPrnaseq <- function(Gcount, RMM, designM, contrastM, Groups=NULL, p=1,threshold
 #' @return
 #'
 
-.ePrnaseqFunction <- function(counts=y,RMM= RMmeber,contrastM=contrastM,designM=designM, Groups=Groups){
+.ePrnaseqFunction <- function(counts=y,RMM,contrastM,designM, Groups){
 
   ##require(combinat)
 
@@ -234,6 +227,3 @@ EPrnaseq <- function(Gcount, RMM, designM, contrastM, Groups=NULL, p=1,threshold
   return(FAP);
 }
 ########################################################################################
-
-
-
