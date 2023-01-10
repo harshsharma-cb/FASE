@@ -22,7 +22,7 @@
 #' @export
 #'
 
-ppFASE <- function(folderSRA=FALSE, gtf=gtf, exonCount=exonCount, intronCount=intronCount, JunctionMatrix=JunctionMatrix) {
+ppFASE <- function(folderSRA=FALSE, gtf, exonCount, intronCount, JunctionMatrix) {
 
   if(folderSRA==FALSE){
     folderSRA <- getwd();
