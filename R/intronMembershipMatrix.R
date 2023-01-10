@@ -23,7 +23,7 @@
 #' @export
 #'
 
-intronMembershipMatrix <- function(verbose=TRUE, annotation=annotation) {
+intronMembershipMatrix <- function(verbose=TRUE, annotation) {
 
     # library(BioPhysConnectoR)
 
