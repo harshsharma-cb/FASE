@@ -1,4 +1,4 @@
-citHeader("Please cite the paper below for the FASE software.")
+citHeader("Please cite the paper below for FASE software.")
 
 citEntry(entry="article",
 	author = c(person("Harsh","Sharma"),
@@ -10,7 +10,9 @@ citEntry(entry="article",
 	journal = "Briefings in Bioinformatics",
 	year = 2023,
 	volume = ,
-	number = ,
+	number =,
+	issn = 1477-4054,
+	note = "bbad022",
 	pages = "",
 	doi = "10.1093/bib/bbad022",
 
