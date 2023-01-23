@@ -9,6 +9,6 @@ License: GNU General Public License (GPL)
 Encoding: UTF-8
 LazyData: True
 RoxygenNote: 7.1.1
-Citation: Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D. (2023). Prediction of transcript structure and concentration using RNA-Seq data. Briefings in Bioinformatics. DOI: 10.1093/bib/bbad022
+Citation: Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D., Prediction of transcript structure and concentration using RNA-Seq data, Briefings in Bioinformatics, 2023;, bbad022, https://doi.org/10.1093/bib/bbad022
 Imports: Biobase, Matrix, RBGL, Rsubread, edgeR, graph, limma, matrixStats, BioPhysConnectoR, openxlsx, parallel, survival, survivalAnalysis, dplyr, igraph, purrr, stringr, MASS, methods, stats
 Dependencies: BioPhysConnectoR (R >= 3.6.2); Biobase (R >= 3.6.2); Matrix (R >= 3.6.2); RBGL (R >= 3.6.2); Rsubread (R >= 3.6.2); edgeR (R >= 3.6.2); graph (R >= 3.6.2); limma (R >= 3.6.2); matrixStats (R >= 3.6.2); parallel (R >= 3.6.2); openxlsx (R >= 3.6.2); survival (R >= 3.6.2); survivalAnalysis (R >= 3.6.2); dplyr (R >= 3.6.2); purrr (R >= 3.6.2); igraph (R >= 3.6.2); stringr (R >= 3.6.2); MASS (R >= 3.6.2), methods(R >= 3.6.2), stats(R >= 3.6.2)
