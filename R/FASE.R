@@ -1,6 +1,6 @@
 #' FASE: Finding Alternative Splicing Events (0.1.24)
-#'
-#' RNA-Seq data analysis pipeline.
+#' 
+#' Analysis of RNA-Sequencing data using FASE.
 #'
 #' @name FASE
 #'
