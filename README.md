@@ -7,4 +7,4 @@ The pipeline is based on differential alternative splicing events and predicts t
 It has seven modules for downstream analysis of RNA-Sequencing data. These include: differential alternative splicing, transcript structure, transcript concentration, survival analysis, network analysis, differential gene expression, and differential junction expression.
 
 Citation:
-Harsh Sharma, Trishna Pani, Ujjaini Dasgupta, Jyotsna Batra, Ravi Datta Sharma, Prediction of transcript structure and concentration using RNA-Seq data, Briefings in Bioinformatics, 2023;, bbad022, https://doi.org/10.1093/bib/bbad022
+Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D., Prediction of transcript structure and concentration using RNA-Seq data, Briefings in Bioinformatics, 2023;, bbad022, https://doi.org/10.1093/bib/bbad022
