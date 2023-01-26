@@ -1,10 +1,10 @@
 Package: FASE
 Type: Package
-Title: RNA-Seq data analysis pipeline
+Title: Analysis of RNA-Sequencing data using FASE (Finding Alternative Splicing Events).
 Version: 0.1.24
 Author: Harsh Sharma, Ravi Datta Sharma
-Maintainer: Harsh Sharma <harsh.sharma34@student.amity.edu>
-Description: Pipeline for RNA Sequencing data analysis and Alternative Splicing. FASE can be used for finding Cassette Exon/Intron Retention events, Structure and Concentration of different transcripts expressed in treated and normal condition(s). It also contains wrapper functions to find Differentially Expressed Genes and Differentially Expressed Junctions.
+Maintainer: Harsh Sharma <harshsharma.cb@gmail.com>
+Description: The pipeline is based on differential alternative splicing events and predicts the transcript structure and their concentration along with survival analysis. This is the first kind of pipeline that takes advantage of differential alternative splicing events for finding novel transcripts that are neglected due to low expression in transcript level statistical analysis. It also contains wrapper functions to find Differentially Expressed Genes and Differentially Expressed Junctions.
 License: GNU General Public License (GPL)
 Encoding: UTF-8
 LazyData: True
