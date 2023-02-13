@@ -9,6 +9,7 @@ It has seven modules for downstream analysis of RNA-Sequencing data. These inclu
 ## Installation:
 ### Using R
 download.file(url = 'https://github.com/harshsharma-cb/FASE/archive/refs/heads/main.zip', destfile = 'FASE-main.zip')
+
 install.packages('FASE-main.zip', type = 'source', repos = NULL)
 
 ### Using devtools in R
