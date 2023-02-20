@@ -7,10 +7,10 @@ The pipeline is based on differential alternative splicing events and predicts t
 It has seven modules for downstream analysis of RNA-Sequencing data. These include: differential alternative splicing, transcript structure, transcript concentration, survival analysis, network analysis, differential gene expression, and differential junction expression.
 
 ## Installation:
-### Using R
+### Downloading and installing the package from github
 download.file(url = 'https://github.com/harshsharma-cb/FASE/archive/refs/heads/main.zip', destfile = 'FASE-main.zip')
-
-install.packages('FASE-main.zip', type = 'source', repos = NULL)
+unzip('FASE-main.zip')
+install.packages('FASE-main', type = 'source', repos = NULL)
 
 ### Using devtools in R
 devtools::install_github('FASE')
