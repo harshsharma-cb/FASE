@@ -18,4 +18,4 @@ install.packages('FASE-main', type = 'source', repos = NULL)
 devtools::install_github('FASE')
 
 ## Citation:
-Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D., Prediction of transcript structure and concentration using RNA-Seq data, Briefings in Bioinformatics, 2023;, bbad022, https://doi.org/10.1093/bib/bbad022
+Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D., Prediction of transcript structure and concentration using RNA-Seq data, Briefings in Bioinformatics, Volume 24, Issue 2, March 2023, bbad022, https://doi.org/10.1093/bib/bbad022
