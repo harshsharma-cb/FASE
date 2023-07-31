@@ -17,5 +17,8 @@ install.packages('FASE-main', type = 'source', repos = NULL)
 ### Using devtools in R
 devtools::install_github('FASE')
 
+### Tutorial
+A tutorial is provided in the main folder: https://github.com/harshsharma-cb/FASE/blob/main/FASE%20tutorial.pdf
+
 ## Citation:
 Sharma, H., Pani, T., Dasgupta, U., Batra, J., and Sharma, R.D., Prediction of transcript structure and concentration using RNA-Seq data, Briefings in Bioinformatics, Volume 24, Issue 2, March 2023, bbad022, https://doi.org/10.1093/bib/bbad022
