@@ -14,7 +14,7 @@ getPvaluesByContrast <- function(fit, contrast=NULL)
   if (attr(fit, "name") != "EPrnaSeq" & attr(fit, "name") != "iPrnaSeq") stop('Not an object of EPrnaSeq or iPrnaSeq')
   atNames<- attr(fit, "name")
   if (attr(fit, "fun") != 'addAnnotationRnaSeq') stop('Please run first addAnnotationRnaSeq')
-  avContrast <- levels(fit[,7])
+     avContrast <- unique(fit[, 7])
 
   if (is.null(contrast)) {
     cat('Available contrast :', length(avContrast),': Using only first one','\n',sep='')
